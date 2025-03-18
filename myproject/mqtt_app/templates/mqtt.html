@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Real-Time AWS IoT Data</title>
+</head>
+
+<body>
+    <h2>Sensor Data:</h2>
+    <div id="sensorData">Waiting for data...</div>
+    <script>
+        const socket = new WebSocket("ws://127.0.0.1:8000/ws/mqtt/");
+
+        socket.onopen = () => {
+            console.log("✅ WebSocket Connected");
+        };
+
+
+        socket.onmessage = (event) => {
+            console.log("✅ Received WebSocket message:", event.data);
+
+            if (!event.data) {
+                console.error("❌ WebSocket message is empty.");
+                return;
+            }
+
+            try {
+                const data = JSON.parse(event.data);
+                console.log("✅ Parsed WebSocket Data:", data);
+
+                // Extract actual message content
+                const sensorData = data.message; // Adjusted to access 'message'
+
+                if (sensorData && sensorData.s_no) {
+                    document.getElementById("sensorData").innerHTML = `
+                <p><strong>S.No:</strong> ${sensorData.s_no}</p>
+                    <p><strong>Exercise:</strong> ${sensorData.exercise_name}</p>
+                    <p><strong>Angle:</strong> ${sensorData.angles_degrees}°</p>
+                    <p><strong>Body Part:</strong> ${sensorData.body_part_tracked}</p>
+                    <p><strong>Ideal Right Angle:</strong> ${sensorData.ideal_right_angle}°</p>
+                    <p><strong>Correction Needed:</strong> ${sensorData.correction_needed}</p>
+                    <p><strong>Reps Count:</strong> ${sensorData.reps_count}</p>
+                    <p><strong>Posture Picture:</strong><br>
+                        <img src="${sensorData.posture_picture}" width="300" alt="Posture Image"
+                        onerror="this.onerror=null; this.src='fallback.jpg';">
+                    </p>
+                    `;
+                } else {
+                    console.warn("⚠️ Unexpected data format:", data);
+                }
+            } catch (error) {
+                console.error("❌ Error parsing WebSocket message:", error);
+            }
+        };
+        socket.onerror = (error) => {
+            console.error("❌ WebSocket error:", error);
+        };
+
+        socket.onclose = () => {
+            console.warn("⚠️ WebSocket Closed! Reconnecting...");
+            setTimeout(() => {
+                location.reload();
+            }, 3000);
+        };
+    </script>
+
+
+</body>
+
+</html>
