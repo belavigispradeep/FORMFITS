@@ -39,7 +39,7 @@
         }
 
         .info-text {
-            display: none;
+            display: block;
             margin-top: 10px;
         }
 
@@ -64,6 +64,107 @@
             width: 100px;
             height: auto;
         }
+
+
+        /* Exercise Tip Box */
+        .tip-container {
+            font-size: 1rem;
+            font-weight: 600;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-left: 5px solid #ff4444;
+            padding: 10px;
+            transition: all 0.5s ease-in-out;
+            color: #fff;
+        }
+
+        #exercise-tip {
+            display: inline-block;
+        }
+
+        /* Next Tip Button */
+        #next-tip {
+            background-color: #ff4444;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        #next-tip:hover {
+            background-color: #cc0000;
+        }
+
+        /* Buttons */
+        .exercise-btn {
+            padding: 10px 20px;
+            font-size: 1rem;
+            border-radius: 8px;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .exercise-btn:hover {
+            background-color: #cc0000 !important;
+            color: #fff !important;
+            transform: scale(1.05);
+        }
+
+        /* Exercise Card */
+        .exercise-card {
+            max-width: 400px;
+            background-color: #1e1e1e;
+            color: #ffffff;
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.1);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .exercise-card:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Image Styling */
+        .exercise-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin-top: 10px;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .exercise-image:hover {
+            transform: scale(1.05);
+        }
+
+        /* Fade-In Animation */
+        .fade-in {
+            opacity: 0;
+            animation: fadeIn 1s forwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        .exercise-image {
+            width: 100%;
+            /* Makes the image responsive */
+            max-width: 700px;
+            /* Ensures the image is large */
+            height: auto;
+            /* Maintains aspect ratio */
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+        }
     </style>
 </head>
 
@@ -87,7 +188,9 @@
                 </a>
                 <div class="d-flex align-items-center ms-4 mb-4">
                     <div class="position-relative">
-                        <img class="rounded-circle" src="https://images.unsplash.com/photo-1590098440413-b73573388b02?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDEyN3x8fGVufDB8fHx8fA%3D%3D" alt="" style="width: 40px; height: 40px;">
+                        <img class="rounded-circle"
+                            src="https://images.unsplash.com/photo-1590098440413-b73573388b02?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDEyN3x8fGVufDB8fHx8fA%3D%3D"
+                            alt="" style="width: 40px; height: 40px;">
                         <div
                             class="bg-success rounded-circle border border-2 border-white position-absolute end-0 bottom-0 p-1">
                         </div>
@@ -204,8 +307,9 @@
                     </div>
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
-                            <img class="rounded-circle me-lg-2" src="https://images.unsplash.com/photo-1590098440413-b73573388b02?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDEyN3x8fGVufDB8fHx8fA%3D%3D" alt=""
-                                style="width: 40px; height: 40px;">
+                            <img class="rounded-circle me-lg-2"
+                                src="https://images.unsplash.com/photo-1590098440413-b73573388b02?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDEyN3x8fGVufDB8fHx8fA%3D%3D"
+                                alt="" style="width: 40px; height: 40px;">
                             <span class="d-none d-lg-inline-flex">Aditya GR</span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-end bg-secondary border-0 rounded-0 rounded-bottom m-0">
@@ -230,6 +334,26 @@
 
             <!-- Dashboard UI -->
             <h2>Exercise Data Dashboard</h2>
+
+            <!-- Sales Chart Start -->
+            <div class="container-fluid vh-100 d-flex flex-column align-items-center justify-content-center">
+                <h3 class="text-center mb-4">Select an Exercise</h3>
+
+                <!-- Exercise Tip Section -->
+                <div id="exercise-tip-container" class="tip-container mb-3 p-3 text-center w-75 rounded shadow-sm">
+                    <p id="exercise-tip" class="m-0"></p>
+                    <button id="next-tip" class="btn btn-sm btn-light mt-2">Next Tip</button>
+                </div>
+
+                <div id="exercise-buttons" class="button-container mb-4">
+                    <!-- Buttons will be generated dynamically -->
+                </div>
+
+                <div class="row w-100 h-100 d-flex align-items-center justify-content-center" id="dashboard">
+                    <!-- Dynamic content will be inserted here -->
+                </div>
+            </div>
+
 
             <table id="exerciseTable">
                 <thead>
@@ -352,14 +476,110 @@
 
         socket.onclose = () => {
             console.warn("⚠️ WebSocket Closed! Reconnecting...");
-            setTimeout(() => {
-                location.reload();
-            }, 3000);
+            // setTimeout(() => {
+            //     location.reload();
+            // }, 3000);
         };
     </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            let exerciseData = [];
+            let exerciseTips = [
+                "💡 Keep your core engaged throughout the workout!",
+                "🏋🏻‍♀️ Maintain a neutral spine to avoid injuries.",
+                "⚖️ Control your movements and avoid jerky motions.",
+                "🌬️ Focus on breathing properly during each rep.",
+                "🤸‍♂️ Warm-up before starting to reduce injury risks."
+            ];
+
+            let tipIndex = 0;
+
+            // Fetch Exercise Data
+            async function fetchExerciseData() {
+                try {
+                    const response = await fetch("{% static 'json/exercise_data.json' %}");
+                    exerciseData = await response.json();
+                    console.log(exerciseData);
+                    createExerciseButtons();
+                    updateExerciseTip();
+                } catch (error) {
+                    console.error('Error fetching exercise data:', error);
+                }
+            }
+
+            // Generate Exercise Buttons
+            function createExerciseButtons() {
+                const buttonContainer = document.getElementById("exercise-buttons");
+                buttonContainer.innerHTML = "";
+
+                exerciseData.forEach((exercise, index) => {
+                    const button = document.createElement("button");
+                    button.classList.add("exercise-btn", "btn", "btn-danger", "m-2");
+                    button.textContent = exercise.exercise_name;
+                    button.onclick = () => displayExercise(index);
+                    buttonContainer.appendChild(button);
+                });
+            }
+
+            // Display Selected Exercise Details
+            function displayExercise(index) {
+                if (!exerciseData.length) return;
+
+                const dashboard = document.getElementById("dashboard");
+
+                if (!dashboard) {
+                    console.error("❌ 'dashboard' element not found.");
+                    return;
+                }
+
+                dashboard.innerHTML = ""; // Clear previous content
+
+                let exercise = exerciseData[index];
+
+                let exerciseCard = document.createElement("div");
+                exerciseCard.classList.add("exercise-card", "fade-in", "p-3", "text-center");
+
+                // ✅ Increased Image Size
+                exerciseCard.innerHTML = `
+            <h4 class="mb-3">${exercise.exercise_name}</h4>
+            <div class="d-flex justify-content-center">
+                <img src="${exercise.posture_picture}" alt="${exercise.exercise_name}" 
+                     class="exercise-image img-fluid rounded shadow" 
+                     style="max-width: 600px; height: auto;"> 
+                     </div>
+                     <p class="info-text mt-3"><b>Angles (Degrees):</b> ${exercise.angles_degrees}° (${exercise.body_part})</p>
+                    </div>
+        `;
+
+                dashboard.appendChild(exerciseCard);
+            }
+
+            // Rotate Exercise Tips Every 5 Seconds
+            function updateExerciseTip() {
+                const tipBox = document.getElementById("exercise-tip");
+                tipBox.textContent = exerciseTips[tipIndex];
+
+                tipBox.classList.add("fade-in");
+
+                setTimeout(() => {
+                    tipBox.classList.remove("fade-in");
+                }, 2000);
+
+                tipIndex = (tipIndex + 1) % exerciseTips.length;
+            }
+
+            setInterval(updateExerciseTip, 5000);
+
+            document.getElementById("next-tip").addEventListener("click", () => {
+                updateExerciseTip();
+            });
+
+            // Fetch Data when Page Loads
+            fetchExerciseData();
+        });
 
 
-
+    </script>
 
 </body>
 
