@@ -41,6 +41,7 @@
             padding: 20px;
             border-radius: 8px;
         }
+
         .todo-item {
             display: flex;
             align-items: center;
@@ -48,9 +49,70 @@
             padding: 5px 0;
             border-bottom: 1px solid #ddd;
         }
+
         .completed {
             text-decoration: line-through;
             color: gray;
+        }
+
+        .feedback-item {
+            background: #f8f9fa;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            cursor: pointer;
+            position: relative;
+            transition: 0.3s ease-in-out;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .feedback-item:hover {
+            background: #007bff;
+            color: #fff;
+            transform: scale(1.02);
+        }
+
+        .feedback-item p {
+            margin: 0;
+            font-weight: bold;
+        }
+
+        .feedback-item span {
+            font-size: 14px;
+            color: #6c757d;
+        }
+
+        .delete-btn {
+            background: red;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .delete-btn:hover {
+            background: darkred;
+        }
+
+        /* Smooth remove animation */
+        .fade-out {
+            opacity: 0;
+            transition: opacity 0.5s ease-out;
+        }
+
+        /* Dark Mode */
+        .dark-mode {
+            background: #222 !important;
+            color: #f8f9fa;
+        }
+
+        .dark-mode .feedback-item {
+            background: #444;
+            color: white;
         }
     </style>
 </head>
@@ -94,7 +156,7 @@
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i
                                 class="fa fa-laptop me-2"></i>About</a>
                     </div>
-            
+
                     <!-- <a href="widget.html" class="nav-item nav-link"><i class="fa fa-th me-2"></i>Widgets</a>
                     <a href="form.html" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>Forms</a> -->
                     <!-- <a href="table.html" class="nav-item nav-link"><i class="fa fa-table me-2"></i>Tables</a> -->
@@ -134,8 +196,7 @@
                         <div class="dropdown-menu dropdown-menu-end bg-secondary border-0 rounded-0 rounded-bottom m-0">
                             <a href="#" class="dropdown-item">
                                 <div class="d-flex align-items-center">
-                                    <img class="rounded-circle" alt=""
-                                        style="width: 40px; height: 40px;">
+                                    <img class="rounded-circle" alt="" style="width: 40px; height: 40px;">
                                     <div class="ms-2">
                                         <h6 class="fw-normal mb-0">Arvind send you a message</h6>
                                         <small>5 minutes ago</small>
@@ -145,8 +206,7 @@
                             <hr class="dropdown-divider">
                             <a href="#" class="dropdown-item">
                                 <div class="d-flex align-items-center">
-                                    <img class="rounded-circle"  alt=""
-                                        style="width: 40px; height: 40px;">
+                                    <img class="rounded-circle" alt="" style="width: 40px; height: 40px;">
                                     <div class="ms-2">
                                         <h6 class="fw-normal mb-0">Alexa send you a message</h6>
                                         <small>22 minutes ago</small>
@@ -239,129 +299,48 @@
                     </div>
                 </div>
             </div>
-            <!-- Sales Chart End -->
-            <!-- <div class="container-fluid pt-4 px-4">
-                <div class="row g-4">
-                    <div class="col-sm-12 col-xl-6">
-                        <div class="bg-secondary text-center rounded p-4">
-                            <div class="d-flex align-items-center justify-content-between mb-4">
-                                <h6 class="mb-0">Posture Accuracy Score</h6>
-                                <a href="">Show All</a>
-                            </div>
-                            <canvas id="worldwide-sales"></canvas>
-                        </div>
-                    </div>
-                    <div class="col-sm-12 col-xl-6">
-                        <div class="bg-secondary text-center rounded p-4">
-                            <div class="d-flex align-items-center justify-content-between mb-4">
-                                <h6 class="mb-0"> Angle of Posture</h6>
-                                <a href="">Show All</a>
-                            </div>
-                            <canvas id="salse-revenue"></canvas>
-                        </div>
-                    </div>
-                </div>
-            </div> -->
+
             <!-- Sales Chart End -->
             <div class="container-fluid pt-4 px-4">
                 <div class="row g-4">
                     <div class="col-sm-12 col-xl-10">
                         <div class="bg-secondary rounded h-100 p-4">
                             <h6 class="mb-4">Feedback Suggestions</h6>
-                            <div class="border rounded p-4 pb-0 mb-4">
-                                <figure>
-                                    <blockquote class="blockquote">
-                                        <p>Keep your knees aligned with your toes.</p>
-                                    </blockquote>
-                                    <figcaption class="blockquote-footer">
-                                        Squats in <cite title="Source Title">Posture Analysis</cite>
-                                    </figcaption>
-                                </figure>
-                            </div>
-                            <div class="border rounded p-4 pb-0 mb-4">
-                                <figure>
-                                    <blockquote class="blockquote">
-                                        <p>Engage your core, don’t let hips sag.</p>
-                                    </blockquote>
-                                    <figcaption class="blockquote-footer">
-                                        Push-ups in <cite title="Source Title">Posture Analysis</cite>
-                                    </figcaption>
-                                </figure>
-                            </div>
-                            <div class="border rounded p-4 pb-0 mb-0">
-                                <figure>
-                                    <blockquote class="blockquote">
-                                        <p>Maintain a neutral spine position.</p>
-                                    </blockquote>
-                                    <figcaption class="blockquote-footer">
-                                        Plank in <cite title="Source Title">Posture Analysis</cite>
-                                    </figcaption>
-                                </figure>
-                            </div>
-                            <div class="border rounded p-4 pb-0 mb-4">
-                                <figure>
-                                    <blockquote class="blockquote">
-                                        <p>Keep your knees aligned with your toes.</p>
-                                    </blockquote>
-                                    <figcaption class="blockquote-footer">
-                                        Squats in <cite title="Source Title">Posture Analysis</cite>
-                                    </figcaption>
-                                </figure>
+
+                            <!-- Search Bar -->
+                            <input type="text" id="searchInput" class="form-control mb-3"
+                                placeholder="Search Feedback..." onkeyup="filterFeedback()">
+
+                            <!-- Toggle Dark Mode -->
+                            <button id="toggleMode" class="btn btn-light mb-3">🌙 Dark Mode</button>
+
+                            <div id="feedbackContainer">
+                                <!-- Feedback Items -->
+                                <div class="feedback-item">
+                                    <p>Keep your knees aligned with your toes.</p>
+                                    <span>Squats in <cite>Posture Analysis</cite></span>
+                                    <button class="delete-btn" onclick="deleteFeedback(this)">❌</button>
+                                </div>
+
+                                <div class="feedback-item">
+                                    <p>Engage your core, don’t let hips sag.</p>
+                                    <span>Push-ups in <cite>Posture Analysis</cite></span>
+                                    <button class="delete-btn" onclick="deleteFeedback(this)">❌</button>
+                                </div>
+
+                                <div class="feedback-item">
+                                    <p>Maintain a neutral spine position.</p>
+                                    <span>Plank in <cite>Posture Analysis</cite></span>
+                                    <button class="delete-btn" onclick="deleteFeedback(this)">❌</button>
+                                </div>
                             </div>
 
-                            <div class="border rounded p-4 pb-0 mb-4">
-                                <figure>
-                                    <blockquote class="blockquote">
-                                        <p>Engage your core, don’t let hips sag.</p>
-                                    </blockquote>
-                                    <figcaption class="blockquote-footer">
-                                        Push-ups in <cite title="Source Title">Posture Analysis</cite>
-                                    </figcaption>
-                                </figure>
-                            </div>
-
-                            <div class="border rounded p-4 pb-0 mb-4">
-                                <figure>
-                                    <blockquote class="blockquote">
-                                        <p>Maintain a neutral spine position.</p>
-                                    </blockquote>
-                                    <figcaption class="blockquote-footer">
-                                        Plank in <cite title="Source Title">Posture Analysis</cite>
-                                    </figcaption>
-                                </figure>
-                            </div>
-
-                            <div class="border rounded p-4 pb-0 mb-4">
-                                <figure>
-                                    <blockquote class="blockquote">
-                                        <p>Keep your upper body straight, and don’t let your knee go past your toes.</p>
-                                    </blockquote>
-                                    <figcaption class="blockquote-footer">
-                                        Lunges in <cite title="Source Title">Posture Analysis</cite>
-                                    </figcaption>
-                                </figure>
-                            </div>
-
-                            <div class="border rounded p-4 pb-0 mb-4">
-                                <figure>
-                                    <blockquote class="blockquote">
-                                        <p>Keep your back straight and drive through your heels.</p>
-                                    </blockquote>
-                                    <figcaption class="blockquote-footer">
-                                        Deadlifts in <cite title="Source Title">Posture Analysis</cite>
-                                    </figcaption>
-                                </figure>
-                            </div>
-
-                            <div class="border rounded p-4 pb-0 mb-4">
-                                <figure>
-                                    <blockquote class="blockquote">
-                                        <p>Avoid arching your back and keep your core engaged.</p>
-                                    </blockquote>
-                                    <figcaption class="blockquote-footer">
-                                        Shoulder Press in <cite title="Source Title">Posture Analysis</cite>
-                                    </figcaption>
-                                </figure>
+                            <!-- Add New Feedback (Visible only to Stakeholders) -->
+                            <div class="add-feedback mt-4" id="addFeedbackSection" style="display: none;">
+                                <input type="text" id="feedbackText" class="form-control" placeholder="Enter feedback">
+                                <input type="text" id="feedbackType" class="form-control mt-2"
+                                    placeholder="Enter exercise name">
+                                <button onclick="addFeedback()" class="btn btn-primary mt-2">Add Feedback</button>
                             </div>
 
                         </div>
@@ -370,78 +349,8 @@
             </div>
 
 
-            <!-- Recent Sales Start -->
-            <!-- <div class="container-fluid pt-4 px-4">
-                <div class="bg-secondary text-center rounded p-4">
-                    <div class="d-flex align-items-center justify-content-between mb-4">
-                        <h6 class="mb-0">Recent Salse</h6>
-                        <a href="">Show All</a>
-                    </div>
-                    <div class="table-responsive">
-                        <table class="table text-start align-middle table-bordered table-hover mb-0">
-                            <thead>
-                                <tr class="text-white">
-                                    <th scope="col"><input class="form-check-input" type="checkbox"></th>
-                                    <th scope="col">Date</th>
-                                    <th scope="col">Invoice</th>
-                                    <th scope="col">Customer</th>
-                                    <th scope="col">Amount</th>
-                                    <th scope="col">Status</th>
-                                    <th scope="col">Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td><input class="form-check-input" type="checkbox"></td>
-                                    <td>01 Jan 2045</td>
-                                    <td>INV-0123</td>
-                                    <td>Jhon Doe</td>
-                                    <td>$123</td>
-                                    <td>Paid</td>
-                                    <td><a class="btn btn-sm btn-primary" href="">Detail</a></td>
-                                </tr>
-                                <tr>
-                                    <td><input class="form-check-input" type="checkbox"></td>
-                                    <td>01 Jan 2045</td>
-                                    <td>INV-0123</td>
-                                    <td>Jhon Doe</td>
-                                    <td>$123</td>
-                                    <td>Paid</td>
-                                    <td><a class="btn btn-sm btn-primary" href="">Detail</a></td>
-                                </tr>
-                                <tr>
-                                    <td><input class="form-check-input" type="checkbox"></td>
-                                    <td>01 Jan 2045</td>
-                                    <td>INV-0123</td>
-                                    <td>Jhon Doe</td>
-                                    <td>$123</td>
-                                    <td>Paid</td>
-                                    <td><a class="btn btn-sm btn-primary" href="">Detail</a></td>
-                                </tr>
-                                <tr>
-                                    <td><input class="form-check-input" type="checkbox"></td>
-                                    <td>01 Jan 2045</td>
-                                    <td>INV-0123</td>
-                                    <td>Jhon Doe</td>
-                                    <td>$123</td>
-                                    <td>Paid</td>
-                                    <td><a class="btn btn-sm btn-primary" href="">Detail</a></td>
-                                </tr>
-                                <tr>
-                                    <td><input class="form-check-input" type="checkbox"></td>
-                                    <td>01 Jan 2045</td>
-                                    <td>INV-0123</td>
-                                    <td>Jhon Doe</td>
-                                    <td>$123</td>
-                                    <td>Paid</td>
-                                    <td><a class="btn btn-sm btn-primary" href="">Detail</a></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div> -->
-            <!-- Recent Sales End -->
+
+
 
 
             <!-- Widgets Start -->
@@ -479,7 +388,7 @@
     </div>
 
     <!-- JavaScript Libraries -->
-    
+
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="{% static 'lib/chart/chart.min.js' %}"></script>
@@ -493,43 +402,107 @@
     <!-- Template Javascript -->
     <script src="{% static 'js/main.js' %}"></script>
     <script>
-         function addTask() {
+        function addTask() {
             var taskInput = document.getElementById("taskInput");
             var taskText = taskInput.value.trim();
             if (taskText === "") return;
-            
+
             var taskList = document.getElementById("taskList");
             var li = document.createElement("li");
             li.classList.add("todo-item");
-            
+
             var checkbox = document.createElement("input");
             checkbox.type = "checkbox";
             checkbox.classList.add("form-check-input");
-            checkbox.onchange = function() {
+            checkbox.onchange = function () {
                 if (checkbox.checked) {
                     taskTextElem.classList.add("completed");
                 } else {
                     taskTextElem.classList.remove("completed");
                 }
             };
-            
+
             var taskTextElem = document.createElement("span");
             taskTextElem.textContent = taskText;
-            
+
             var deleteBtn = document.createElement("button");
             deleteBtn.classList.add("btn", "btn-sm", "text-danger");
             deleteBtn.innerHTML = "<i class='fa fa-times'></i>";
-            deleteBtn.onclick = function() {
+            deleteBtn.onclick = function () {
                 taskList.removeChild(li);
             };
-            
+
             li.appendChild(checkbox);
             li.appendChild(taskTextElem);
             li.appendChild(deleteBtn);
             taskList.appendChild(li);
-            
+
             taskInput.value = "";
         }
+
+
+        // Mock User Role (This should be replaced with backend authentication)
+        const userRole = "stakeholder"; // Change this to "user" to test restrictions
+
+        // Toggle Feedback Visibility
+        function toggleFeedback(element) {
+            element.classList.toggle("hidden");
+        }
+
+        // Delete Feedback with Smooth Animation
+        function deleteFeedback(button) {
+            let feedbackItem = button.parentElement;
+            feedbackItem.classList.add("fade-out");
+            setTimeout(() => feedbackItem.remove(), 500);
+        }
+
+        // Add New Feedback (Only if user is a stakeholder)
+        function addFeedback() {
+            if (userRole !== "stakeholder") {
+                alert("Only stakeholders can add feedback!");
+                return;
+            }
+
+            let text = document.getElementById("feedbackText").value;
+            let type = document.getElementById("feedbackType").value;
+            if (text && type) {
+                let container = document.getElementById("feedbackContainer");
+                let newFeedback = document.createElement("div");
+                newFeedback.classList.add("feedback-item");
+                newFeedback.innerHTML = `
+            <p>${text}</p>
+            <span>${type} in <cite>Posture Analysis</cite></span>
+            <button class="delete-btn" onclick="deleteFeedback(this)">❌</button>
+        `;
+                container.appendChild(newFeedback);
+                document.getElementById("feedbackText").value = "";
+                document.getElementById("feedbackType").value = "";
+            }
+        }
+
+        // Search Filter
+        function filterFeedback() {
+            let input = document.getElementById("searchInput").value.toLowerCase();
+            let feedbackItems = document.getElementsByClassName("feedback-item");
+            for (let item of feedbackItems) {
+                let text = item.textContent.toLowerCase();
+                item.style.display = text.includes(input) ? "flex" : "none";
+            }
+        }
+
+        // Toggle Dark Mode
+        document.getElementById("toggleMode").addEventListener("click", function () {
+            document.body.classList.toggle("dark-mode");
+            this.textContent = document.body.classList.contains("dark-mode") ? "☀️ Light Mode" : "🌙 Dark Mode";
+        });
+
+        // Restrict Feedback Addition to Stakeholders Only
+        window.onload = function () {
+            if (userRole === "stakeholder") {
+                document.getElementById("addFeedbackSection").style.display = "block";
+            }
+        };
+
     </script>
 </body>
 

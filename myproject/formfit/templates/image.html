@@ -42,6 +42,28 @@
             display: none;
             margin-top: 10px;
         }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th,
+        td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        img {
+            width: 100px;
+            height: auto;
+        }
     </style>
 </head>
 
@@ -65,7 +87,7 @@
                 </a>
                 <div class="d-flex align-items-center ms-4 mb-4">
                     <div class="position-relative">
-                        <img class="rounded-circle" src="img/user.jpg" alt="" style="width: 40px; height: 40px;">
+                        <img class="rounded-circle" src="https://images.unsplash.com/photo-1590098440413-b73573388b02?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDEyN3x8fGVufDB8fHx8fA%3D%3D" alt="" style="width: 40px; height: 40px;">
                         <div
                             class="bg-success rounded-circle border border-2 border-white position-absolute end-0 bottom-0 p-1">
                         </div>
@@ -182,7 +204,7 @@
                     </div>
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
-                            <img class="rounded-circle me-lg-2" src="img/user.jpg" alt=""
+                            <img class="rounded-circle me-lg-2" src="https://images.unsplash.com/photo-1590098440413-b73573388b02?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDEyN3x8fGVufDB8fHx8fA%3D%3D" alt=""
                                 style="width: 40px; height: 40px;">
                             <span class="d-none d-lg-inline-flex">Aditya GR</span>
                         </a>
@@ -205,15 +227,29 @@
 
 
             <!-- Sales Chart Start -->
-            
-    <!-- Dashboard UI -->
-    <div class="container-fluid pt-4 px-4">
-        <div class="row g-4 d-flex align-items-center">
-            <img id="postureImage" src="" alt="Exercise Image" class="fixed-size-image"
-                style="display: none; margin-top: 10px;">
-            <span id="info" class="info-text" style="display: none;"><b> Exercise & Angles: </b></span>
-        </div
-    </div>
+
+            <!-- Dashboard UI -->
+            <h2>Exercise Data Dashboard</h2>
+
+            <table id="exerciseTable">
+                <thead>
+                    <tr>
+                        <th>S.No</th>
+                        <th>Exercise Name</th>
+                        <th>Angle (°)</th>
+                        <th>Body Part Tracked</th>
+                        <th>Ideal Right Angle (°)</th>
+                        <th>Correction Needed</th>
+                        <th>Reps Count</th>
+                        <th>Posture Image</th>
+                    </tr>
+                </thead>
+                <tbody id="tableBody">
+                    <tr>
+                        <td colspan="8">Waiting for data...</td>
+                    </tr>
+                </tbody>
+            </table>
 
 
             <!-- Footer Start -->
@@ -259,9 +295,71 @@
             info.style.display = isHidden ? 'block' : 'none';
         }
     </script>
-    
+    <script>
+        const socket = new WebSocket("ws://127.0.0.1:8000/ws/mqtt/");
 
-    
+        socket.onopen = () => {
+            console.log("✅ WebSocket Connected");
+        };
+
+        socket.onmessage = (event) => {
+            console.log("✅ Received WebSocket message:", event.data);
+
+            if (!event.data) {
+                console.error("❌ WebSocket message is empty.");
+                return;
+            }
+
+            try {
+                const data = JSON.parse(event.data);
+                console.log("✅ Parsed WebSocket Data:", data);
+
+                // Extract actual message content
+                const sensorData = data.message; // Adjusted to access 'message'
+
+                if (sensorData && sensorData.s_no) {
+                    const tableBody = document.getElementById("tableBody");
+
+                    // Create a new row for the data
+                    const newRow = `
+                <tr>
+                    <td>${sensorData.s_no}</td>
+                    <td>${sensorData.exercise_name}</td>
+                    <td>${sensorData.angles_degrees}°</td>
+                    <td>${sensorData.body_part_tracked}</td>
+                    <td>${sensorData.ideal_right_angle}°</td>
+                    <td>${sensorData.correction_needed}</td>
+                    <td>${sensorData.reps_count}</td>
+                    <td>
+                        <img src="${sensorData.posture_picture}" onerror="this.src='fallback.jpg';" alt="Exercise Image">
+                    </td>
+                </tr>
+            `;
+
+                    // Add the new row at the top of the table
+                    tableBody.innerHTML = newRow + tableBody.innerHTML;
+                } else {
+                    console.warn("⚠️ Unexpected data format:", data);
+                }
+            } catch (error) {
+                console.error("❌ Error parsing WebSocket message:", error);
+            }
+        };
+
+        socket.onerror = (error) => {
+            console.error("❌ WebSocket error:", error);
+        };
+
+        socket.onclose = () => {
+            console.warn("⚠️ WebSocket Closed! Reconnecting...");
+            setTimeout(() => {
+                location.reload();
+            }, 3000);
+        };
+    </script>
+
+
+
 
 </body>
 

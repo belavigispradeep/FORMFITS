@@ -67,100 +67,100 @@
     // Worldwide Sales Chart
     var ctx1 = $("#worldwide-sales").get(0).getContext("2d");
 
-    // Extracted data from Excel
-    var labels = ["Squats", "Push-ups", "Plank", "Lunges", "Shoulder Press"];
-    var correctAngles = [90, 45, 180, 90, 180];
-    var postureScores = [95, 88, 92, 85, 87];
+    // // Extracted data from Excel
+    // var labels = ["Squats", "Push-ups", "Plank", "Lunges", "Shoulder Press"];
+    // var correctAngles = [90, 45, 180, 90, 180];
+    // var postureScores = [95, 88, 92, 85, 87];
     
-    var myChart1 = new Chart(ctx1, {
-        type: "bar",
-        data: {
-            labels: labels,
-            datasets: [
-                {
-                    label: "Correct Angle Range (Degrees)",
-                    data: correctAngles,
-                    backgroundColor: "rgba(235, 22, 22, .7)"
-                },
-                {
-                    label: "Posture Accuracy Score (Out of 100)",
-                    data: postureScores,
-                    backgroundColor: "rgba(22, 160, 133, .7)"
-                }
-            ]
-        },
-        options: {
-            responsive: true,
-            scales: {
-                y: {
-                    beginAtZero: true,
-                    max: 200
-                }
-            }
-        }
-    });
+    // var myChart1 = new Chart(ctx1, {
+    //     type: "bar",
+    //     data: {
+    //         labels: labels,
+    //         datasets: [
+    //             {
+    //                 label: "Correct Angle Range (Degrees)",
+    //                 data: correctAngles,
+    //                 backgroundColor: "rgba(235, 22, 22, .7)"
+    //             },
+    //             {
+    //                 label: "Posture Accuracy Score (Out of 100)",
+    //                 data: postureScores,
+    //                 backgroundColor: "rgba(22, 160, 133, .7)"
+    //             }
+    //         ]
+    //     },
+    //     options: {
+    //         responsive: true,
+    //         scales: {
+    //             y: {
+    //                 beginAtZero: true,
+    //                 max: 200
+    //             }
+    //         }
+    //     }
+    // });
     
 
-    var ctx2 = $("#salse-revenue").get(0).getContext("2d");
+    // var ctx2 = $("#salse-revenue").get(0).getContext("2d");
 
-    // JSON data
-    var postureData = {
-        "posture_analysis": [
-            {"exercise": "pull-up", "angle_data": {"elbow_angle": 85, "shoulder_angle": 120, "spine_angle": 165}},
-            {"exercise": "chin-up", "angle_data": {"elbow_angle": 80, "shoulder_angle": 110, "spine_angle": 168}},
-            {"exercise": "lat pulldown", "angle_data": {"elbow_angle": 90, "shoulder_angle": 105, "spine_angle": 170}},
-            {"exercise": "bent-over row", "angle_data": {"elbow_angle": 95, "shoulder_angle": 115, "spine_angle": 160}},
-            {"exercise": "seated row", "angle_data": {"elbow_angle": 100, "shoulder_angle": 110, "spine_angle": 175}},
-            {"exercise": "deadlift", "angle_data": {"elbow_angle": 180, "shoulder_angle": 90, "spine_angle": 160}},
-            {"exercise": "face pull", "angle_data": {"elbow_angle": 120, "shoulder_angle": 100, "spine_angle": 170}}
-        ]
-    };
+    // // JSON data
+    // var postureData = {
+    //     "posture_analysis": [
+    //         {"exercise": "pull-up", "angle_data": {"elbow_angle": 85, "shoulder_angle": 120, "spine_angle": 165}},
+    //         {"exercise": "chin-up", "angle_data": {"elbow_angle": 80, "shoulder_angle": 110, "spine_angle": 168}},
+    //         {"exercise": "lat pulldown", "angle_data": {"elbow_angle": 90, "shoulder_angle": 105, "spine_angle": 170}},
+    //         {"exercise": "bent-over row", "angle_data": {"elbow_angle": 95, "shoulder_angle": 115, "spine_angle": 160}},
+    //         {"exercise": "seated row", "angle_data": {"elbow_angle": 100, "shoulder_angle": 110, "spine_angle": 175}},
+    //         {"exercise": "deadlift", "angle_data": {"elbow_angle": 180, "shoulder_angle": 90, "spine_angle": 160}},
+    //         {"exercise": "face pull", "angle_data": {"elbow_angle": 120, "shoulder_angle": 100, "spine_angle": 170}}
+    //     ]
+    // };
     
-    // Extract data for chart
-    var labels = postureData.posture_analysis.map(entry => entry.exercise);
-    var elbowAngles = postureData.posture_analysis.map(entry => entry.angle_data.elbow_angle);
-    var shoulderAngles = postureData.posture_analysis.map(entry => entry.angle_data.shoulder_angle);
-    var spineAngles = postureData.posture_analysis.map(entry => entry.angle_data.spine_angle);
+    // // Extract data for chart
+    // var labels = postureData.posture_analysis.map(entry => entry.exercise);
+    // var elbowAngles = postureData.posture_analysis.map(entry => entry.angle_data.elbow_angle);
+    // var shoulderAngles = postureData.posture_analysis.map(entry => entry.angle_data.shoulder_angle);
+    // var spineAngles = postureData.posture_analysis.map(entry => entry.angle_data.spine_angle);
     
-    // Chart.js configuration
-    var myChart2 = new Chart(ctx2, {
-        type: "line",
-        data: {
-            labels: labels,
-            datasets: [
-                {
-                    label: "Elbow Angle",
-                    data: elbowAngles,
-                    backgroundColor: "rgba(235, 22, 22, .7)",
-                    borderColor: "rgba(235, 22, 22, 1)",
-                    fill: false
-                },
-                {
-                    label: "Shoulder Angle",
-                    data: shoulderAngles,
-                    backgroundColor: "rgba(22, 160, 133, .7)",
-                    borderColor: "rgba(22, 160, 133, 1)",
-                    fill: false
-                },
-                {
-                    label: "Spine Angle",
-                    data: spineAngles,
-                    backgroundColor: "rgba(52, 152, 219, .7)",
-                    borderColor: "rgba(52, 152, 219, 1)",
-                    fill: false
-                }
-            ]
-        },
-        options: {
-            responsive: true,
-            scales: {
-                y: {
-                    beginAtZero: true,
-                    max: 200
-                }
-            }
-        }
-    });
+    // // Chart.js configuration
+    // var myChart2 = new Chart(ctx2, {
+    //     type: "line",
+    //     data: {
+    //         labels: labels,
+    //         datasets: [
+    //             {
+    //                 label: "Elbow Angle",
+    //                 data: elbowAngles,
+    //                 backgroundColor: "rgba(235, 22, 22, .7)",
+    //                 borderColor: "rgba(235, 22, 22, 1)",
+    //                 fill: false
+    //             },
+    //             {
+    //                 label: "Shoulder Angle",
+    //                 data: shoulderAngles,
+    //                 backgroundColor: "rgba(22, 160, 133, .7)",
+    //                 borderColor: "rgba(22, 160, 133, 1)",
+    //                 fill: false
+    //             },
+    //             {
+    //                 label: "Spine Angle",
+    //                 data: spineAngles,
+    //                 backgroundColor: "rgba(52, 152, 219, .7)",
+    //                 borderColor: "rgba(52, 152, 219, 1)",
+    //                 fill: false
+    //             }
+    //         ]
+    //     },
+    //     options: {
+    //         responsive: true,
+    //         scales: {
+    //             y: {
+    //                 beginAtZero: true,
+    //                 max: 200
+    //             }
+    //         }
+    //     }
+    // });
     
 
     // Single Line Chart

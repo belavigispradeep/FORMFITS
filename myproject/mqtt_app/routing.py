@@ -6,7 +6,7 @@ from .consumers import IoTConsumer as MQTTConsumer
 
 websocket_urlpatterns = [
     path("ws/mqtt/", IoTConsumer.as_asgi()),
-    # re_path(r'ws/mqtt/$', MQTTConsumer.as_asgi()),
+    re_path(r'ws/mqtt/$', MQTTConsumer.as_asgi()),
 ]
 
 
