@@ -1,0 +1,102 @@
+[
+    {
+        "s_no": 1,
+        "exercise_name": "Push-Up",
+        "angles_degrees": 45,
+        "posture_picture": "https://shockwavedata1.s3.ap-south-1.amazonaws.com/Data/Excel+Photos/Push+Ups.jpg",
+        "body_part": "Elbow,Shoulder",
+        "ideal_right_angle": 75.0,
+        "correction_needed": "No",
+        "reps_count": 15
+    },
+    {
+        "s_no": 2,
+        "exercise_name": "Squat",
+        "angles_degrees": 85,
+        "posture_picture": "https://shockwavedata1.s3.ap-south-1.amazonaws.com/Data/Excel+Photos/squat.webp",
+        "body_part": "Knee, Hip",
+        "ideal_right_angle": 110.0,
+        "correction_needed": "Yes",
+        "reps_count": 10
+    },
+    {
+        "s_no": 3,
+        "exercise_name": "Bent-Over Rows",
+        "angles_degrees": 70,
+        "posture_picture": "https://shockwavedata1.s3.ap-south-1.amazonaws.com/Data/Excel+Photos/bent+over+rows.webp",
+        "body_part": "Back, Elbow",
+        "ideal_right_angle": 100.0,
+        "correction_needed": "No",
+        "reps_count": 12
+    },
+    {
+        "s_no": 4,
+        "exercise_name": "Face pulls",
+        "angles_degrees": 60,
+        "posture_picture": "https://shockwavedata1.s3.ap-south-1.amazonaws.com/Data/Excel+Photos/face+pulls.jpg",
+        "body_part": "Shoulder, Wrist",
+        "ideal_right_angle": 87.5,
+        "correction_needed": "No",
+        "reps_count": 12
+    },
+    {
+        "s_no": 5,
+        "exercise_name": "Deadlift",
+        "angles_degrees": 80,
+        "posture_picture": "https://shockwavedata1.s3.ap-south-1.amazonaws.com/Data/Excel+Photos/deadlift.jpg",
+        "body_part": "Knee, Hip",
+        "ideal_right_angle": 127.5,
+        "correction_needed": "Yes",
+        "reps_count": 8
+    },
+    {
+        "s_no": 6,
+        "exercise_name": "Bench Press",
+        "angles_degrees": 90,
+        "posture_picture": "https://shockwavedata1.s3.ap-south-1.amazonaws.com/Data/Excel+Photos/bench+press.jpg",
+        "body_part": "Elbow, Shoulder",
+        "ideal_right_angle": 82.5,
+        "correction_needed": "No",
+        "reps_count": 10
+    },
+    {
+        "s_no": 7,
+        "exercise_name": "Leg Press",
+        "angles_degrees": 60,
+        "posture_picture": "https://shockwavedata1.s3.ap-south-1.amazonaws.com/Data/Excel+Photos/Leg+Press.jpg",
+        "body_part": "Knee, Hip",
+        "ideal_right_angle": 112.5,
+        "correction_needed": "No",
+        "reps_count": 12
+    },
+    {
+        "s_no": 8,
+        "exercise_name": "Shoulder Press",
+        "angles_degrees": 70,
+        "posture_picture": "https://shockwavedata1.s3.ap-south-1.amazonaws.com/Data/Excel+Photos/Shoulder+Press.jpg",
+        "body_part": "Shoulder, Elbow",
+        "ideal_right_angle": 105.0,
+        "correction_needed": "Yes",
+        "reps_count": 10
+    },
+    {
+        "s_no": 9,
+        "exercise_name": "Bicep Curl",
+        "angles_degrees": 90,
+        "posture_picture": "https://shockwavedata1.s3.ap-south-1.amazonaws.com/Data/Excel+Photos/Bicep+Curl.webp",
+        "body_part": "Elbow, Wrist",
+        "ideal_right_angle": 82.5,
+        "correction_needed": "No",
+        "reps_count": 15
+    },
+    {
+        "s_no": 10,
+        "exercise_name": "Tricep Dips",
+        "angles_degrees": 100,
+        "posture_picture": "https://shockwavedata1.s3.ap-south-1.amazonaws.com/Data/Excel+Photos/triceps-dip.webp",
+        "body_part": "Elbow, Shoulder",
+        "ideal_right_angle": 95.0,
+        "correction_needed": "No",
+        "reps_count": 10
+    }
+]
