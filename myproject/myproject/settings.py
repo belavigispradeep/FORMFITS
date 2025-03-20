@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'formfit',
     "channels",
-     'mqtt_app',
+    'mqtt_app',
 ]
 
 MIDDLEWARE = [
